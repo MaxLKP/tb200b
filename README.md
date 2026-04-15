@@ -1,0 +1,2 @@
+# TB200B Readout
+Python code using [serial interface](https://www.pyserial.com/) to take measurements with EC Sense [TB200B](https://ecsense.com/ec-sense-products/?filters=product_cat[165]) based gas sensors.

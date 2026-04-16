@@ -1,5 +1,7 @@
 # TB200B Readout
 Python code using [serial interface](https://www.pyserial.com/) to take measurements with EC Sense [TB200B](https://ecsense.com/ec-sense-products/?filters=product_cat[165]) based gas sensors.
+
+This is an independent implementation of the communication protocol of the TB200B by EC Sense. It is not affiliated with, endorsed, or supported by EC Sense.
 ## Installation
 First clone the repository:
 ```
@@ -15,6 +17,6 @@ All functionality is adopted from the EC Sense communication protocol.
 import tba200b
 hf_sensor = tba200b.TBA200b("COM3")
 ```
-#License
+### License
 This is an independent implementation of the communication protocol of the TB200B by EC Sense. It is not affiliated with, endorsed, or supported by EC Sense.
 [MIT License](https://github.com/MaxLKP/tb200b/blob/main/LICENSE)

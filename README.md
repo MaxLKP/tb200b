@@ -16,3 +16,4 @@ import tba200b
 hf_sensor = tba200b.TBA200b("COM3")
 ```
 ### License
+[MIT License](https://github.com/MaxLKP/tb200b/blob/main/LICENSE)

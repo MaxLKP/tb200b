@@ -5,19 +5,11 @@ from tb200b.header import *
 # Project:
 # https://github.com/MaxLKP/tb200b
 
-# Serial Config
-BAUDRATE = 9600
-PARITY = "N"
-BYTESIZE = 8
-STOPBITS = 1
-RTSCTS = 1
-TIMEOUT = 5
-
 class TB200B:
     def __init__(self, port):
         self.port = port
         #self.serial = serial.Serial(port, baudrate = BAUDRATE, parity = PARITY, bytesize = BYTESIZE, stopbits = STOPBITS, rtscts = RTSCTS, timeout = TIMEOUT)
-        self.commands = commands
+        self.commands = COMMANDS
     
     def __write_command(self, command: bytes) -> None:
         self.serial.write(command)
@@ -38,10 +30,9 @@ class TB200B:
         #self.__write_command(self.commands["command_3"])
         #response = self.__read_response()
         response = answer
-        print(response)
-        sensor = sensor_types_inverse[response[0]]
+        sensor = SENSOR_TYPES_INVERSE[response[0]]
         maximum_range = (response[1] << 8) | response[2]
-        unit = units_inverse[response[3]]
+        unit = UNITS_INVERSE[response[3]]
         decimals = (response[7]) >> 4
         sign = response[7] & 0b00001111
         if sign == 0:

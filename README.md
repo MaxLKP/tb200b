@@ -15,7 +15,7 @@ pip install ./tba200b
 All functionality is adopted from the EC Sense communication protocol. 
 ```
 import tba200b
-hf_sensor = tba200b.TBA200b("COM3")
+hf_sensor = tba200b.TBA200B("COM3")
 ```
 ### License
 This is an independent implementation of the communication protocol of the TB200B (EC Sense). It is not affiliated with, endorsed, or supported by EC Sense. All reference documents, datasheets, and specifications belong to their respective copyright holders.

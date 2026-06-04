@@ -6,7 +6,7 @@ from tb200b.header import *
 # https://github.com/MaxLKP/tb200b
 
 class TB200B:
-    def __init__(self, port):
+    def __init__(self, port) -> None:
         self.port = port
         #self.serial = serial.Serial(port, baudrate = BAUDRATE, parity = PARITY, bytesize = BYTESIZE, stopbits = STOPBITS, rtscts = RTSCTS, timeout = TIMEOUT)
         self.commands = COMMANDS
@@ -51,7 +51,6 @@ class TB200B:
         hum = float((response[10] << 8) | response[11]) / 100
         combined = {"conc": conc, "temp": temp, "hum": hum}
         return combined
-
 
 tb200b = TB200B("COM2")
 print(tb200b.get_sensorparameters(b'\x18\x00\xc8\x02\x00\x00\x00\x01\x35'))

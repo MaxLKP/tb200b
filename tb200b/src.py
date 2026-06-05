@@ -42,7 +42,7 @@ class TB200B:
         return sensor_info
 
     def get_combinedread(self) -> dict:
-        self.__write_command(self.commands["command_5"])
+        self.__write_command(self.commands["command_6"])
         response = self.__read_response(13)
         conc = float(response[2]) * 256 + float(response[3])
         temp = float((response[8] << 8) | response[9]) / 100

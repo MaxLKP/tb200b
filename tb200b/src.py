@@ -15,8 +15,8 @@ class TB200B:
         self.serial.write(command)
         time.sleep(0.1)
     
-    def __read_response(self):
-        response = self.serial.readlines()
+    def __read_response(self, response_length: int):
+        response = self.serial.read(response_length)
         time.sleep(0.1)
         return response
 
@@ -28,7 +28,7 @@ class TB200B:
     
     def get_sensorparameters(self) -> dict:
         self.__write_command(self.commands["command_3"])
-        response = self.__read_response()
+        response = self.__read_response(9)
         sensor = SENSOR_TYPES_INVERSE[response[0]]
         maximum_range = (response[1] << 8) | response[2]
         unit = UNITS_INVERSE[response[3]]
@@ -43,9 +43,10 @@ class TB200B:
 
     def get_combinedread(self) -> dict:
         self.__write_command(self.commands["command_5"])
-        response = self.__read_response()
+        response = self.__read_response(13)
         conc = float(response[2]) * 256 + float(response[3])
         temp = float((response[8] << 8) | response[9]) / 100
         hum = float((response[10] << 8) | response[11]) / 100
         combined = {"conc": conc, "temp": temp, "hum": hum}
         return combined
+        

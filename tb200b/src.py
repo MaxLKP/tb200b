@@ -55,7 +55,6 @@ class TB200B:
         self.__write_command(self.commands["command_5"])
         response = self.__read_response(9)
         parameters = self.get_sensorparameters()
-        print(parameters, parameters["decimals"])
         decimals = parameters["decimals"]
         conc_mgm3 = (response[2] * 256 + response[3]) / 10**decimals
         conc_ppm = (response[6] * 256 + response[7]) / 10**decimals

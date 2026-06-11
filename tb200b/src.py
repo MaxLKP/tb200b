@@ -53,10 +53,10 @@ class TB200B:
         
     def get_concentration(self) -> dict:
         self.__write_command(self.commands["command_5"])
+        response = self.__read_response(9)
         parameters = self.get_sensorparameters()
         print(parameters, parameters["decimals"])
         decimals = parameters["decimals"]
-        response = self.__read_response(9)
         conc_mgm3 = (response[2] * 256 + response[3]) / 10**decimals
         conc_ppm = (response[6] * 256 + response[7]) / 10**decimals
         concentration = {"conc_mgm3": conc_mgm3, "conc_ppm": conc_ppm}

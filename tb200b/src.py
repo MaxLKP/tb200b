@@ -44,9 +44,18 @@ class TB200B:
     def get_combinedread(self) -> dict:
         self.__write_command(self.commands["command_6"])
         response = self.__read_response(13)
-        conc = float(response[2]) * 256 + float(response[3])
+        conc_mgm3 = float(response[2]) * 256 + float(response[3])
+        conc_ppm = float(response[6]) * 256 + float(response[7])
         temp = float((response[8] << 8) | response[9]) / 100
         hum = float((response[10] << 8) | response[11]) / 100
-        combined = {"conc": conc, "temp": temp, "hum": hum}
+        combined = {"conc_mgm3": conc_mgm3, "conc_ppm": conc_ppm, "temp": temp, "hum": hum}
         return combined
         
+    def get_concentration(self) -> dict:
+        self.__write_command(self.commands["command_5"])
+        decimals = self.get_sensorparameters()["decimals"]
+        response = self.__read_response(9)
+        conc_mgm3 = (response[2] * 256 + response[3]) / 10**decimals
+        conc_ppm = (response[6] * 256 + response[7]) / 10**decimals
+        concentration = {"conc_mgm3": conc_mgm3, "conc_ppm": conc_ppm}
+        return concentration

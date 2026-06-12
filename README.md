@@ -33,9 +33,9 @@ Returns a dict with the measurements taken in the form
 ```
 {"conc_mgm3": conc_mgm3, "conc_ppm": conc_ppm, "temp": temp, "hum": hum}
 ```
-### Get Concentration Measurement only
+### Get Concentration Measurement Only
 ```
-TBA200B.get_concentration -> dict
+TBA200B.get_concentration() -> dict
 ```
 Returns a dict containing the measured concentration
 ```
